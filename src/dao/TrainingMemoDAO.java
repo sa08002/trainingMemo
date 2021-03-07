@@ -14,14 +14,14 @@ public class TrainingMemoDAO {
 
 	private final String JDBC_URL =
 			"jdbc:h2:tcp://localhost/~/trainingMemo";
-//	private final String DB_USER = "sa";
-//	private final String DB_PASS = "";
+	private final String DB_USER = "sa";
+	private final String DB_PASS = "";
 
 	public List<TrainingMemo> findAll() {
 		List<TrainingMemo> empTrainingMemo = new ArrayList<>();
 
 		try (Connection conn = DriverManager.getConnection(
-				JDBC_URL)) {
+				JDBC_URL, DB_USER, DB_PASS)) {
 
 			String sql = "SELECT BENCH, DEADLIFT, SQUAT FROM TRAININGMEMO";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
