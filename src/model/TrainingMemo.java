@@ -24,6 +24,4 @@ public class TrainingMemo {
 		return squat;
 	}
 
-
-
 }

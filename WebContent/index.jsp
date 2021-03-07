@@ -8,9 +8,9 @@
 </head>
 <body>
 <form action="" method="post">
-ベンチプレス：<input type="tel" name="bench"><br>
-デッドリフト：<input type="tel" name="deadlift"><br>
-スクワット：<input type="tel" name="squat"><br>
+ベンチプレス：<input type="number" name="bench"><br>
+デッドリフト：<input type="number" name="deadlift"><br>
+スクワット：<input type="number" name="squat"><br>
 <input type="submit" value="送信">
 </form>
 </body>
