@@ -29,9 +29,9 @@ public class TrainingMemoDAO {
 			ResultSet rs = pStmt.executeQuery();
 
 			while (rs.next()) {
-				Double bench = rs.getDouble("BENCH");
-				Double deadlift = rs.getDouble("DEADLIFT");
-				Double squat = rs.getDouble("SQUAT");
+				String bench = rs.getString("BENCH");
+				String deadlift = rs.getString("DEADLIFT");
+				String squat = rs.getString("SQUAT");
 
 				TrainingMemo triningMemo = new TrainingMemo(bench, deadlift,squat);
 				empTrainingMemo.add(triningMemo);
