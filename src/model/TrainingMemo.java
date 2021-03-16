@@ -2,25 +2,25 @@ package model;
 
 public class TrainingMemo {
 
-	private double bench;
-	private double deadlift;
-	private double squat;
+	private String bench;
+	private String deadlift;
+	private String squat;
 
-	public TrainingMemo(double bench, double deadlift, double squat) {
+	public TrainingMemo(String bench, String deadlift, String squat) {
 		this.bench = bench;
 		this.deadlift = deadlift;
 		this.squat = squat;
 	}
 
-	public double getBench() {
+	public String getBench() {
 		return bench;
 	}
 
-	public double getDeadlift() {
+	public String getDeadlift() {
 		return deadlift;
 	}
 
-	public double getSquat() {
+	public String getSquat() {
 		return squat;
 	}
 
