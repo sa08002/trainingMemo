@@ -24,9 +24,20 @@ public class Main extends HttpServlet {
 			HttpServletResponse response)
 			throws ServletException, IOException {
 
+		ServletContext application = this.getServletContext();
+
+
+		List<TrainingMemo> trainingMemoList =
+				(List<TrainingMemo>) application.getAttribute("trainingMemoList");
+
+		if(trainingMemoList ==null) {
+			trainingMemoList = new ArrayList<>();
+			application.setAttribute("trainingMemoList", trainingMemoList);
+		}
+
 
 		RequestDispatcher dispatcher =
-				request.getRequestDispatcher("/WEB-INF/index.jsp");
+				request.getRequestDispatcher("/WEB-INF/trainingMemo.jsp");
 		dispatcher.forward(request, response);
 
 	}
@@ -43,14 +54,9 @@ public class Main extends HttpServlet {
 
 		ServletContext application = this.getServletContext();
 
-
 		List<TrainingMemo> trainingMemoList =
 				(List<TrainingMemo>) application.getAttribute("trainingMemoList");
 
-		if(trainingMemoList ==null) {
-			trainingMemoList = new ArrayList<>();
-			application.setAttribute("trainingMemoList", trainingMemoList);
-		}
 
 		TrainingMemo trainingMemo = new TrainingMemo(bench, deadlift, squat);
 
