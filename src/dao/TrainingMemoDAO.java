@@ -23,7 +23,7 @@ public class TrainingMemoDAO {
 		try (Connection conn = DriverManager.getConnection(
 				JDBC_URL, DB_USER, DB_PASS)) {
 
-			String sql = "SELECT BENCH, DEADLIFT, SQUAT FROM TRAININGMEMO";
+			String sql = "SELECT BENCH, DEADLIFT, SQUAT FROM TRAININGMEMO ORDER BY ID DESC";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			ResultSet rs = pStmt.executeQuery();
@@ -43,4 +43,30 @@ public class TrainingMemoDAO {
 		}
 		return empTrainingMemo;
 	}
+
+	public boolean create(TrainingMemo trainingMemo) {
+
+		try (Connection conn = DriverManager.getConnection(
+				JDBC_URL, DB_USER, DB_PASS)) {
+
+			String sql = "INSERT INTO TRAININGMEMO(BENCH, DEADLIFT, SQUAT) VALUES(?, ?, ?)";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			pStmt.setString(1, trainingMemo.getBench());
+			pStmt.setString(2, trainingMemo.getDeadlift());
+			pStmt.setString(3, trainingMemo.getSquat());
+
+			int result = pStmt.executeUpdate();
+
+			if (result != 1) {
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+
+	}
+
 }
