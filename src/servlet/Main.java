@@ -1,17 +1,16 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.GetTrainingMemoLogic;
 import model.PostTrainingMemoLogic;
 import model.TrainingMemo;
 
@@ -24,16 +23,21 @@ public class Main extends HttpServlet {
 			HttpServletResponse response)
 			throws ServletException, IOException {
 
-		ServletContext application = this.getServletContext();
+//		ServletContext application = this.getServletContext();
+//
+//
+//		List<TrainingMemo> trainingMemoList =
+//				(List<TrainingMemo>) application.getAttribute("trainingMemoList");
+//
+//		if(trainingMemoList ==null) {
+//			trainingMemoList = new ArrayList<>();
+//			application.setAttribute("trainingMemoList", trainingMemoList);
+//		}
 
+		GetTrainingMemoLogic getTrainingMemoLogic = new GetTrainingMemoLogic();
+		List<TrainingMemo> trainingMemoList = getTrainingMemoLogic.execute();
 
-		List<TrainingMemo> trainingMemoList =
-				(List<TrainingMemo>) application.getAttribute("trainingMemoList");
-
-		if(trainingMemoList ==null) {
-			trainingMemoList = new ArrayList<>();
-			application.setAttribute("trainingMemoList", trainingMemoList);
-		}
+		request.setAttribute("trainingMemoList", trainingMemoList);
 
 
 		RequestDispatcher dispatcher =
@@ -52,19 +56,24 @@ public class Main extends HttpServlet {
 		String deadlift = request.getParameter("deadlift");
 		String squat = request.getParameter("squat");
 
-		ServletContext application = this.getServletContext();
-
-		List<TrainingMemo> trainingMemoList =
-				(List<TrainingMemo>) application.getAttribute("trainingMemoList");
+//		ServletContext application = this.getServletContext();
+//
+//		List<TrainingMemo> trainingMemoList =
+//				(List<TrainingMemo>) application.getAttribute("trainingMemoList");
 
 
 		TrainingMemo trainingMemo = new TrainingMemo(bench, deadlift, squat);
 
 		PostTrainingMemoLogic postTrainingMemoLogic = new PostTrainingMemoLogic();
 
-		postTrainingMemoLogic.execute(trainingMemo, trainingMemoList);
+		postTrainingMemoLogic.execute(trainingMemo);
+//
+//		application.setAttribute("trainingMemoList", trainingMemoList);
 
-		application.setAttribute("trainingMemoList", trainingMemoList);
+		GetTrainingMemoLogic getTrainingMemoLogic = new GetTrainingMemoLogic();
+		List<TrainingMemo> trainingMemoList = getTrainingMemoLogic.execute();
+		request.setAttribute("trainingMemoList", trainingMemoList);
+
 		RequestDispatcher dispatcher =
 				request.getRequestDispatcher("/WEB-INF/trainingMemo.jsp");
 		dispatcher.forward(request, response);
