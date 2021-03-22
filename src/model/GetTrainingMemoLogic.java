@@ -9,8 +9,8 @@ public class GetTrainingMemoLogic {
 	public List<TrainingMemo> execute() {
 
 		TrainingMemoDAO dao = new TrainingMemoDAO();
-		List<TrainingMemo> trainingMemo = dao.findAll();
-		return trainingMemo;
+		List<TrainingMemo> trainingMemoList = dao.findAll();
+		return trainingMemoList;
 
 	}
 
