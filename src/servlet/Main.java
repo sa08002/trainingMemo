@@ -23,17 +23,6 @@ public class Main extends HttpServlet {
 			HttpServletResponse response)
 			throws ServletException, IOException {
 
-//		ServletContext application = this.getServletContext();
-//
-//
-//		List<TrainingMemo> trainingMemoList =
-//				(List<TrainingMemo>) application.getAttribute("trainingMemoList");
-//
-//		if(trainingMemoList ==null) {
-//			trainingMemoList = new ArrayList<>();
-//			application.setAttribute("trainingMemoList", trainingMemoList);
-//		}
-
 		GetTrainingMemoLogic getTrainingMemoLogic = new GetTrainingMemoLogic();
 		List<TrainingMemo> trainingMemoList = getTrainingMemoLogic.execute();
 
@@ -56,19 +45,12 @@ public class Main extends HttpServlet {
 		String deadlift = request.getParameter("deadlift");
 		String squat = request.getParameter("squat");
 
-//		ServletContext application = this.getServletContext();
-//
-//		List<TrainingMemo> trainingMemoList =
-//				(List<TrainingMemo>) application.getAttribute("trainingMemoList");
-
 
 		TrainingMemo trainingMemo = new TrainingMemo(bench, deadlift, squat);
 
 		PostTrainingMemoLogic postTrainingMemoLogic = new PostTrainingMemoLogic();
 
 		postTrainingMemoLogic.execute(trainingMemo);
-//
-//		application.setAttribute("trainingMemoList", trainingMemoList);
 
 		GetTrainingMemoLogic getTrainingMemoLogic = new GetTrainingMemoLogic();
 		List<TrainingMemo> trainingMemoList = getTrainingMemoLogic.execute();
