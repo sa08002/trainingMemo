@@ -22,8 +22,7 @@ public class TrainingMemoDAO {
 		try (Connection conn = DriverManager.getConnection(
 				JDBC_URL, DB_USER, DB_PASS)) {
 
-//			String sql = "SELECT ID, BENCH, DEADLIFT, SQUAT FROM TRAININGMEMO ORDER BY ID DESC";
-			String sql = "SELECT BENCH, DEADLIFT, SQUAT FROM TRAININGMEMO";
+			String sql = "SELECT ID, BENCH, DEADLIFT, SQUAT FROM TRAININGMEMO ORDER BY ID DESC";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			ResultSet rs = pStmt.executeQuery();
