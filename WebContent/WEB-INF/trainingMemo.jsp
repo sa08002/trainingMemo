@@ -10,12 +10,8 @@
 <title>筋トレ記録</title>
 </head>
 <body>
-<form action="/trainingMemo/Main" method="post">
-ベンチプレス：<input type="number" name="bench"><br>
-デッドリフト：<input type="number" name="deadlift"><br>
-スクワット：<input type="number" name="squat"><br>
-<input type="submit" value="送信">
-</form>
+
+<a href="/trainingMemo/Input">記録入力画面へ</a>
 
 <c:forEach var="trainingMemo" items="${trainingMemoList}">
 	<p>ベンチプレス：<c:out value="${trainingMemo.bench}" /><br>
