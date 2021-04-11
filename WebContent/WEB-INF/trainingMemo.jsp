@@ -14,7 +14,8 @@
 <a href="/trainingMemo/Input">記録入力画面へ</a>
 
 <c:forEach var="trainingMemo" items="${trainingMemoList}">
-	<p>ベンチプレス：<c:out value="${trainingMemo.bench}" /><br>
+	<p>筋トレ日：<c:out value="${trainingMemo.day}" /><br>
+	ベンチプレス：<c:out value="${trainingMemo.bench}" /><br>
 	デッドリフト：<c:out value="${trainingMemo.deadlift}" /><br>
 	スクワット：<c:out value="${trainingMemo.squat}" /></p>
 </c:forEach>

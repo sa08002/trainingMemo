@@ -13,6 +13,7 @@
 <h2>入力画面</h2>
 
 <form name="form1" action="/trainingMemo/Main" method="post" onsubmit="return funcConfirm()">
+筋トレ日：<input type="date" name="day"></input><br>
 ベンチプレス：<input type="text" name="bench"><br>
 デッドリフト：<input type="text" name="deadlift"><br>
 スクワット：<input type="text" name="squat"><br>
@@ -25,6 +26,11 @@
 
 <script type="text/javascript">
 		function funcConfirm() {
+			if (document.form1.day.value == "") {
+				alert("日付が選択されていません。");
+				return false;
+			}
+
 			if (document.form1.bench.value == "") {
 				alert("ベンチプレスが入力されていません。");
 				return false;

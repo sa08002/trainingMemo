@@ -5,11 +5,13 @@ public class TrainingMemo {
 	private String bench;
 	private String deadlift;
 	private String squat;
+	private String day;
 
-	public TrainingMemo(String bench, String deadlift, String squat) {
+	public TrainingMemo(String bench, String deadlift, String squat, String day) {
 		this.bench = bench;
 		this.deadlift = deadlift;
 		this.squat = squat;
+		this.day = day;
 	}
 
 	public String getBench() {
@@ -22,6 +24,10 @@ public class TrainingMemo {
 
 	public String getSquat() {
 		return squat;
+	}
+
+	public String getDay() {
+		return day;
 	}
 
 }
