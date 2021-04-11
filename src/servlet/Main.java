@@ -44,9 +44,10 @@ public class Main extends HttpServlet {
 		String bench = request.getParameter("bench");
 		String deadlift = request.getParameter("deadlift");
 		String squat = request.getParameter("squat");
+		String day = request.getParameter("day");
 
 
-		TrainingMemo trainingMemo = new TrainingMemo(bench, deadlift, squat);
+		TrainingMemo trainingMemo = new TrainingMemo(bench, deadlift, squat, day);
 
 		PostTrainingMemoLogic postTrainingMemoLogic = new PostTrainingMemoLogic();
 

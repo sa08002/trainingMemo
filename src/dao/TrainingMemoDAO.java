@@ -22,7 +22,7 @@ public class TrainingMemoDAO {
 		try (Connection conn = DriverManager.getConnection(
 				JDBC_URL, DB_USER, DB_PASS)) {
 
-			String sql = "SELECT ID, BENCH, DEADLIFT, SQUAT FROM TRAININGMEMO ORDER BY ID DESC";
+			String sql = "SELECT ID, BENCH, DEADLIFT, SQUAT, DAY FROM TRAININGMEMO ORDER BY ID DESC";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			ResultSet rs = pStmt.executeQuery();
@@ -31,8 +31,9 @@ public class TrainingMemoDAO {
 				String bench = rs.getString("BENCH");
 				String deadlift = rs.getString("DEADLIFT");
 				String squat = rs.getString("SQUAT");
+				String day = rs.getString("DAY");
 
-				TrainingMemo triningMemo = new TrainingMemo(bench, deadlift,squat);
+				TrainingMemo triningMemo = new TrainingMemo(bench, deadlift,squat, day);
 				trainingMemoList.add(triningMemo);
 
 			}
@@ -48,12 +49,13 @@ public class TrainingMemoDAO {
 		try (Connection conn = DriverManager.getConnection(
 				JDBC_URL, DB_USER, DB_PASS)) {
 
-			String sql = "INSERT INTO TRAININGMEMO(BENCH, DEADLIFT, SQUAT) VALUES(?, ?, ?)";
+			String sql = "INSERT INTO TRAININGMEMO(BENCH, DEADLIFT, SQUAT, DAY) VALUES(?, ?, ?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			pStmt.setString(1, trainingMemo.getBench());
 			pStmt.setString(2, trainingMemo.getDeadlift());
 			pStmt.setString(3, trainingMemo.getSquat());
+			pStmt.setString(4, trainingMemo.getDay());
 
 			int result = pStmt.executeUpdate();
 
