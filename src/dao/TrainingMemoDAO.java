@@ -28,12 +28,14 @@ public class TrainingMemoDAO {
 			ResultSet rs = pStmt.executeQuery();
 
 			while (rs.next()) {
+				String id = rs.getString("ID");
+				int intId = Integer.parseInt(id);
 				String bench = rs.getString("BENCH");
 				String deadlift = rs.getString("DEADLIFT");
 				String squat = rs.getString("SQUAT");
 				String day = rs.getString("DAY");
 
-				TrainingMemo triningMemo = new TrainingMemo(bench, deadlift,squat, day);
+				TrainingMemo triningMemo = new TrainingMemo(intId, bench, deadlift,squat, day);
 				trainingMemoList.add(triningMemo);
 
 			}
@@ -56,6 +58,29 @@ public class TrainingMemoDAO {
 			pStmt.setString(2, trainingMemo.getDeadlift());
 			pStmt.setString(3, trainingMemo.getSquat());
 			pStmt.setString(4, trainingMemo.getDay());
+
+			int result = pStmt.executeUpdate();
+
+			if (result != 1) {
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+
+	}
+
+	public boolean delete(int intId) {
+
+		try (Connection conn = DriverManager.getConnection(
+				JDBC_URL, DB_USER, DB_PASS)) {
+
+			String sql = "DELETE FROM TRAININGMEMO WHERE ID = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			pStmt.setInt(1, intId);
 
 			int result = pStmt.executeUpdate();
 

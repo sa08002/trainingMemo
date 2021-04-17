@@ -41,6 +41,22 @@ public class Main extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 
+		String param = request.getParameter("state");
+		String[] state = param.split(",");
+
+		switch (state[0]) {
+		case "new_confirm":
+			new_confirm(request, response);
+			break;
+		case "delete_confirm":
+			delete_confirm(request, response, state[1]);
+			break;
+		}
+	}
+
+	private void new_confirm(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
 		String bench = request.getParameter("bench");
 		String deadlift = request.getParameter("deadlift");
 		String squat = request.getParameter("squat");
@@ -60,8 +76,23 @@ public class Main extends HttpServlet {
 		RequestDispatcher dispatcher =
 				request.getRequestDispatcher("/WEB-INF/trainingMemo.jsp");
 		dispatcher.forward(request, response);
+	}
 
+	private void delete_confirm(HttpServletRequest request,
+			HttpServletResponse response, String id) throws ServletException, IOException {
 
+		int intId = Integer.parseInt(id);
+
+		PostTrainingMemoLogic postTrainingMemoLogic = new PostTrainingMemoLogic();
+		postTrainingMemoLogic.deleteId(intId);
+
+		GetTrainingMemoLogic getTrainingMemoLogic = new GetTrainingMemoLogic();
+		List<TrainingMemo> trainingMemoList = getTrainingMemoLogic.execute();
+		request.setAttribute("trainingMemoList", trainingMemoList);
+
+		RequestDispatcher dispatcher =
+				request.getRequestDispatcher("/WEB-INF/trainingMemo.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }
