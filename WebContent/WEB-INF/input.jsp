@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset=UTF-8">
+<meta charset="UTF-8">
 <title>入力画面</title>
 </head>
 <body>
@@ -17,7 +17,7 @@
 ベンチプレス：<input type="text" name="bench"><br>
 デッドリフト：<input type="text" name="deadlift"><br>
 スクワット：<input type="text" name="squat"><br>
-<input type="submit" value="送信" >
+<button name="state" value="new_confirm">送信</button>
 </form>
 
 <a href="/trainingMemo/Main">戻る</a>

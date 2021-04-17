@@ -18,7 +18,11 @@
 	ベンチプレス：<c:out value="${trainingMemo.bench}" /><br>
 	デッドリフト：<c:out value="${trainingMemo.deadlift}" /><br>
 	スクワット：<c:out value="${trainingMemo.squat}" /></p>
+	<form action="/trainingMemo/Main" method="post">
+		<button name="state" value="delete_confirm,${trainingMemo.id}">削除</button>
+	</form>
 </c:forEach>
+
 
 </body>
 </html>
