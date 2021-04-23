@@ -45,16 +45,19 @@ public class Main extends HttpServlet {
 		String[] state = param.split(",");
 
 		switch (state[0]) {
-		case "new_confirm":
-			new_confirm(request, response);
+		case "newConfirm":
+			newConfirm(request, response);
 			break;
-		case "delete_confirm":
-			delete_confirm(request, response, state[1]);
+		case "deletConfirmation":
+			deleteConfirmation(request, response, state[1]);
+			break;
+		case "deleteExecution":
+			deleteExecution(request, response, state[1]);
 			break;
 		}
 	}
 
-	private void new_confirm(HttpServletRequest request,
+	private void newConfirm(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
 		String bench = request.getParameter("bench");
@@ -78,20 +81,39 @@ public class Main extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
-	private void delete_confirm(HttpServletRequest request,
+//	削除確認の処理
+	private void deleteConfirmation(HttpServletRequest request,
+			HttpServletResponse response, String id) throws ServletException, IOException {
+
+		int intId = Integer.parseInt(id);
+
+		TrainingMemo trainingMemo = new TrainingMemo();
+		GetTrainingMemoLogic getTrainingMemoLogic = new GetTrainingMemoLogic();
+		trainingMemo = getTrainingMemoLogic.delete_confirmation(intId);
+
+		request.setAttribute("trainingMemo", trainingMemo);
+
+		RequestDispatcher dispatcher =
+				request.getRequestDispatcher("/WEB-INF/deleteConfirmation.jsp");
+		dispatcher.forward(request, response);
+	}
+
+
+//	削除実行処理
+	private void deleteExecution(HttpServletRequest request,
 			HttpServletResponse response, String id) throws ServletException, IOException {
 
 		int intId = Integer.parseInt(id);
 
 		PostTrainingMemoLogic postTrainingMemoLogic = new PostTrainingMemoLogic();
-		postTrainingMemoLogic.deleteId(intId);
+		postTrainingMemoLogic.delete_execution(intId);
 
 		GetTrainingMemoLogic getTrainingMemoLogic = new GetTrainingMemoLogic();
 		List<TrainingMemo> trainingMemoList = getTrainingMemoLogic.execute();
 		request.setAttribute("trainingMemoList", trainingMemoList);
 
 		RequestDispatcher dispatcher =
-				request.getRequestDispatcher("/WEB-INF/trainingMemo.jsp");
+				request.getRequestDispatcher("/WEB-INF/deleteSuccess.jsp");
 		dispatcher.forward(request, response);
 	}
 
