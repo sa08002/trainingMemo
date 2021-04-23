@@ -10,10 +10,10 @@ public class PostTrainingMemoLogic {
 		dao.create(trainingMemo);
 	}
 
-	public void deleteId(int id) {
+	public void delete_execution(int id) {
 
 		TrainingMemoDAO dao = new TrainingMemoDAO();
-		dao.delete(id);
+		dao.deleteExecution(id);
 	}
 
 }

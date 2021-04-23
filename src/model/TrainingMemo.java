@@ -8,6 +8,10 @@ public class TrainingMemo {
 	private String squat;
 	private String day;
 
+	public TrainingMemo() {
+
+	}
+
 	public TrainingMemo(int id, String bench, String deadlift, String squat, String day) {
 		this.id = id;
 		this.bench = bench;
@@ -46,5 +50,27 @@ public class TrainingMemo {
 	public String getDay() {
 		return day;
 	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setBench(String bench) {
+		this.bench = bench;
+	}
+
+	public void setDeadlift(String deadlift) {
+		this.deadlift = deadlift;
+	}
+
+	public void setSquat(String squat) {
+		this.squat = squat;
+	}
+
+	public void setDay(String day) {
+		this.day = day;
+	}
+
+
 
 }

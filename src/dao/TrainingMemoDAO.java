@@ -35,8 +35,8 @@ public class TrainingMemoDAO {
 				String squat = rs.getString("SQUAT");
 				String day = rs.getString("DAY");
 
-				TrainingMemo triningMemo = new TrainingMemo(intId, bench, deadlift,squat, day);
-				trainingMemoList.add(triningMemo);
+				TrainingMemo trainingMemo = new TrainingMemo(intId, bench, deadlift,squat, day);
+				trainingMemoList.add(trainingMemo);
 
 			}
 		} catch (SQLException e) {
@@ -72,7 +72,44 @@ public class TrainingMemoDAO {
 
 	}
 
-	public boolean delete(int intId) {
+	public TrainingMemo deleteConfirmation(int intId) {
+
+		TrainingMemo trainingMemo = new TrainingMemo();
+
+		try (Connection conn = DriverManager.getConnection(
+				JDBC_URL, DB_USER, DB_PASS)) {
+
+			String sql = "SELECT ID, BENCH, DEADLIFT, SQUAT, DAY FROM TRAININGMEMO WHERE ID = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			pStmt.setInt(1, intId);
+
+			ResultSet rs = pStmt.executeQuery();
+
+			while (rs.next()) {
+
+				String bench = rs.getString("BENCH");
+				String deadlift = rs.getString("DEADLIFT");
+				String squat = rs.getString("SQUAT");
+				String day = rs.getString("DAY");
+
+				trainingMemo.setId(intId);
+				trainingMemo.setBench(bench);
+				trainingMemo.setDeadlift(deadlift);
+				trainingMemo.setSquat(squat);
+				trainingMemo.setDay(day);
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return trainingMemo;
+
+	}
+
+	public boolean deleteExecution(int intId) {
 
 		try (Connection conn = DriverManager.getConnection(
 				JDBC_URL, DB_USER, DB_PASS)) {

@@ -17,7 +17,7 @@
 ベンチプレス：<input type="text" name="bench"><br>
 デッドリフト：<input type="text" name="deadlift"><br>
 スクワット：<input type="text" name="squat"><br>
-<button name="state" value="new_confirm">送信</button>
+<button name="state" value="newConfirm">送信</button>
 </form>
 
 <a href="/trainingMemo/Main">戻る</a>

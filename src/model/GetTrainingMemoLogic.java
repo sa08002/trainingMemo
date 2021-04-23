@@ -14,4 +14,12 @@ public class GetTrainingMemoLogic {
 
 	}
 
+	public TrainingMemo delete_confirmation(int id) {
+
+		TrainingMemoDAO dao = new TrainingMemoDAO();
+		TrainingMemo trainingMemo = dao.deleteConfirmation(id);
+		return trainingMemo;
+
+	}
+
 }
