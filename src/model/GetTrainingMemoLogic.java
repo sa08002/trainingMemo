@@ -22,4 +22,12 @@ public class GetTrainingMemoLogic {
 
 	}
 
+	public TrainingMemo details(int id) {
+
+		TrainingMemoDAO dao = new TrainingMemoDAO();
+		TrainingMemo trainingMemo = dao.details(id);
+		return trainingMemo;
+
+	}
+
 }

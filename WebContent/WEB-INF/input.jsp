@@ -17,6 +17,8 @@
 ベンチプレス：<input type="text" name="bench"><br>
 デッドリフト：<input type="text" name="deadlift"><br>
 スクワット：<input type="text" name="squat"><br>
+詳細：<br>
+<textarea name="text" rows="5" cols="30"></textarea><br>
 <button name="state" value="newConfirm">送信</button>
 </form>
 
