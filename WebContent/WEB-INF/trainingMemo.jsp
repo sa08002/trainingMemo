@@ -19,6 +19,7 @@
 	デッドリフト：<c:out value="${trainingMemo.deadlift}" /><br>
 	スクワット：<c:out value="${trainingMemo.squat}" /></p>
 	<form action="/trainingMemo/Main" method="post">
+		<button name="state" value="details,${trainingMemo.id}">詳細</button>
 		<button name="state" value="deletConfirmation,${trainingMemo.id}">削除</button>
 	</form>
 </c:forEach>

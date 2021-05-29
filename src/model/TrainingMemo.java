@@ -7,9 +7,19 @@ public class TrainingMemo {
 	private String deadlift;
 	private String squat;
 	private String day;
+	private String text;
 
 	public TrainingMemo() {
 
+	}
+
+	public TrainingMemo(int id, String bench, String deadlift, String squat, String day, String text) {
+		this.id = id;
+		this.bench = bench;
+		this.deadlift = deadlift;
+		this.squat = squat;
+		this.day = day;
+		this.text = text;
 	}
 
 	public TrainingMemo(int id, String bench, String deadlift, String squat, String day) {
@@ -20,11 +30,12 @@ public class TrainingMemo {
 		this.day = day;
 	}
 
-	public TrainingMemo(String bench, String deadlift, String squat, String day) {
+	public TrainingMemo(String bench, String deadlift, String squat, String day, String text) {
 		this.bench = bench;
 		this.deadlift = deadlift;
 		this.squat = squat;
 		this.day = day;
+		this.text = text;
 	}
 
 	public TrainingMemo(int id) {
@@ -51,6 +62,10 @@ public class TrainingMemo {
 		return day;
 	}
 
+	public String getText() {
+		return text;
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -71,6 +86,8 @@ public class TrainingMemo {
 		this.day = day;
 	}
 
-
+	public void setText(String text) {
+		this.text = text;
+	}
 
 }
